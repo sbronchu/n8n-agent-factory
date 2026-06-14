@@ -1,0 +1,22 @@
+{
+  "name": "OpenAI Cloud",
+  "provider": "openai",
+  "description": "Modelos de OpenAI para tareas complejas con herramientas externas. Function calling robusto y consistente.",
+  "models": {
+    "primary": "gpt-4o-mini",
+    "fallback": "gpt-4o",
+    "alternative": "gpt-3.5-turbo"
+  },
+  "config": {
+    "temperature": 0.5,
+    "max_tokens": 4096,
+    "timeout": 60000,
+    "context_window": 128000
+  },
+  "use_when": [
+    "Tareas con herramientas externas",
+    "Function calling requerido",
+    "Analisis complejo",
+    "Contexto largo"
+  ]
+}
