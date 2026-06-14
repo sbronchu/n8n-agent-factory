@@ -1,0 +1,12 @@
+{
+  "id": "whatsapp",
+  "name": "WhatsApp Business",
+  "description": "Envia y recibe mensajes de WhatsApp via WhatsApp Business API.",
+  "type": "mcp",
+  "config": {
+    "mcp_server": "whatsapp-mcp",
+    "credentials": ["whatsapp_business_token", "whatsapp_phone_id"]
+  },
+  "capabilities": ["send_message", "receive_message", "send_template", "send_media"],
+  "complexity": "simple"
+}
