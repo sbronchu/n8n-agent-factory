@@ -1,0 +1,41 @@
+{
+  "description": "Reglas para decidir si usar modelo local (simple) o cloud (complex)",
+  "rules": [
+    {
+      "id": "tools_required",
+      "priority": 1,
+      "condition": "tools.length > 0",
+      "description": "Si el agente tiene herramientas configuradas, usar modelo cloud",
+      "route": "complex"
+    },
+    {
+      "id": "database_tools",
+      "priority": 2,
+      "condition": "tools.includes(postgres) OR tools.includes(mysql) OR tools.includes(database)",
+      "description": "Si se necesita acceso a base de datos, usar modelo cloud",
+      "route": "complex"
+    },
+    {
+      "id": "external_apis",
+      "priority": 3,
+      "condition": "tools.includes(telegram) OR tools.includes(discord) OR tools.includes(whatsapp) OR tools.includes(slack)",
+      "description": "Si se necesita APIs externas, usar modelo cloud",
+      "route": "complex"
+    },
+    {
+      "id": "simple_chat",
+      "priority": 4,
+      "condition": "tools.length === 0 AND message.length < 200",
+      "description": "Chat simple sin herramientas, usar modelo local",
+      "route": "simple"
+    },
+    {
+      "id": "default",
+      "priority": 5,
+      "condition": "true",
+      "description": "Por defecto, usar modelo local para ahorrar costos",
+      "route": "simple"
+    }
+  ],
+  "fallback": "simple"
+}
