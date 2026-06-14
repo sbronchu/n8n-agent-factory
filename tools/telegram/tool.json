@@ -1,0 +1,12 @@
+{
+  "id": "telegram",
+  "name": "Telegram Bot",
+  "description": "Envia y recibe mensajes de Telegram. Integra con bots de Telegram para comunicacion bidireccional.",
+  "type": "mcp",
+  "config": {
+    "mcp_server": "telegram-mcp",
+    "credentials": ["telegram_bot_token"]
+  },
+  "capabilities": ["send_message", "receive_message", "send_file", "send_photo"],
+  "complexity": "simple"
+}
