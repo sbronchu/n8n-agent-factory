@@ -1,0 +1,22 @@
+{
+  "name": "Ollama Local",
+  "provider": "ollama",
+  "description": "Modelos locales optimizados para tarjetas graficas de 8GB VRAM. Ideal para tareas simples sin herramientas externas.",
+  "models": {
+    "primary": "llama3.1:8b",
+    "fallback": "mistral:7b",
+    "alternative": "phi3:medium"
+  },
+  "config": {
+    "base_url": "http://172.22.0.6:11434",
+    "temperature": 0.7,
+    "max_tokens": 2048,
+    "timeout": 30000
+  },
+  "use_when": [
+    "Tareas simples de chat",
+    "Sin herramientas externas",
+    "Respuestas rapidas",
+    "Costo cero"
+  ]
+}
