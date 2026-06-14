@@ -1,0 +1,14 @@
+{
+  "id": "cowork-plugin-management",
+  "name": "de Gestion de Plugins",
+  "description": "Especializado en crear, modificar y gestionar plugins de Cowork para organizaciones",
+  "version": "1.0.0",
+  "model_preference": "auto",
+  "tools": [],
+  "memory": { "enabled": true, "type": "both" },
+  "config": {
+    "github_repo": "https://github.com/sbronchu/n8n-agent-factory",
+    "agents_md_path": "agents/cowork-plugin-management/AGENTS.md",
+    "users_md_path": "agents/cowork-plugin-management/USERS.md"
+  }
+}
