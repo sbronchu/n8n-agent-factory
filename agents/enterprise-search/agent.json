@@ -1,0 +1,14 @@
+{
+  "id": "enterprise-search",
+  "name": "de Busqueda Enterprise",
+  "description": "Especializado en encontrar informacion across email, chat, docs y wikis",
+  "version": "1.0.0",
+  "model_preference": "auto",
+  "tools": [],
+  "memory": { "enabled": true, "type": "both" },
+  "config": {
+    "github_repo": "https://github.com/sbronchu/n8n-agent-factory",
+    "agents_md_path": "agents/enterprise-search/AGENTS.md",
+    "users_md_path": "agents/enterprise-search/USERS.md"
+  }
+}
