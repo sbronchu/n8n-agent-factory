@@ -1,0 +1,14 @@
+{
+  "id": "small-business",
+  "name": "para Pequenos Negocios",
+  "description": "Especializado en gestion de PYMES, inventario, contabilidad basica y marketing local",
+  "version": "1.0.0",
+  "model_preference": "auto",
+  "tools": [],
+  "memory": { "enabled": true, "type": "both" },
+  "config": {
+    "github_repo": "https://github.com/sbronchu/n8n-agent-factory",
+    "agents_md_path": "agents/small-business/AGENTS.md",
+    "users_md_path": "agents/small-business/USERS.md"
+  }
+}
