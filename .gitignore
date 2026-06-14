@@ -1,0 +1,17 @@
+# Dependencies
+node_modules/
+
+# OpenCode
+.opencode/node_modules/
+.opencode/package-lock.json
+
+# Environment
+.env
+.env.local
+
+# Logs
+*.log
+
+# OS
+.DS_Store
+Thumbs.db
