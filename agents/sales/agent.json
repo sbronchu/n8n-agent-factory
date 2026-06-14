@@ -1,0 +1,14 @@
+{
+  "id": "sales",
+  "name": "Agente de Ventas",
+  "description": "Especializado en prospecting, pipeline, outreach y preparacion de llamadas",
+  "version": "1.0.0",
+  "model_preference": "auto",
+  "tools": [],
+  "memory": { "enabled": true, "type": "both" },
+  "config": {
+    "github_repo": "https://github.com/sbronchu/n8n-agent-factory",
+    "agents_md_path": "agents/sales/AGENTS.md",
+    "users_md_path": "agents/sales/USERS.md"
+  }
+}
