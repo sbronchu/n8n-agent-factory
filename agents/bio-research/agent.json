@@ -1,0 +1,14 @@
+{
+  "id": "bio-research",
+  "name": "de Investigacion Biologica",
+  "description": "Especializado en literatura cientifica, genomica, target prioritization y R&D",
+  "version": "1.0.0",
+  "model_preference": "auto",
+  "tools": [],
+  "memory": { "enabled": true, "type": "both" },
+  "config": {
+    "github_repo": "https://github.com/sbronchu/n8n-agent-factory",
+    "agents_md_path": "agents/bio-research/AGENTS.md",
+    "users_md_path": "agents/bio-research/USERS.md"
+  }
+}
