@@ -1,0 +1,12 @@
+{
+  "id": "discord",
+  "name": "Discord Bot",
+  "description": "Envia y recibe mensajes de Discord. Integra con servidores de Discord via webhooks o bots.",
+  "type": "mcp",
+  "config": {
+    "mcp_server": "discord-mcp",
+    "credentials": ["discord_bot_token", "discord_webhook_url"]
+  },
+  "capabilities": ["send_message", "receive_message", "send_embed", "send_file"],
+  "complexity": "simple"
+}
