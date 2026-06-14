@@ -1,0 +1,1 @@
+# Telegram Tool\n\n## Configuracion\n\n1. Crea un bot en Telegram via @BotFather\n2. Obtén el token del bot\n3. Configura el token en n8n como credential\n4. Anade este tool al workflow del agente\n\n## Capacidades\n- Enviar mensajes de texto\n- Recibir mensajes del usuario\n- Enviar archivos y fotos\n\n## URL del MCP Server\n`https://api.telegram.org/bot{token}/`\n
