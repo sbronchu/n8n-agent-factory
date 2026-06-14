@@ -1,0 +1,163 @@
+{
+  "name": "Agente Generico",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "chat-trigger",
+      "name": "Chat Trigger",
+      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+      "typeVersion": 1.4,
+      "position": [0, 0]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Extraer AGENT_ID del mensaje o configuracion\nreturn { agent_id: 'productivity' };"
+      },
+      "id": "parse-config",
+      "name": "Parse Config",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [200, 0]
+    },
+    {
+      "parameters": {
+        "url": "https://raw.githubusercontent.com/sbronchu/n8n-agent-factory/main/agents/{{ .agent_id }}/agent.json",
+        "options": {}
+      },
+      "id": "load-agent",
+      "name": "Load Agent Config",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [400, 0]
+    },
+    {
+      "parameters": {
+        "url": "https://raw.githubusercontent.com/sbronchu/n8n-agent-factory/main/agents/{{ .agent_id }}/AGENTS.md",
+        "options": {}
+      },
+      "id": "load-agents-md",
+      "name": "Load AGENTS.md",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [400, 200]
+    },
+    {
+      "parameters": {
+        "url": "https://raw.githubusercontent.com/sbronchu/n8n-agent-factory/main/agents/{{ .agent_id }}/USERS.md",
+        "options": {}
+      },
+      "id": "load-users-md",
+      "name": "Load USERS.md",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [400, 400]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Construir system prompt dinamico\nconst agent = .first().json;\nconst personality = agent.personality;\nconst rules = agent.rules.join('\n');\nconst prompt = ;\nreturn { system_prompt: prompt };"
+      },
+      "id": "build-prompt",
+      "name": "Build System Prompt",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [600, 200]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Routing: simple vs complex\nconst tools = .first().json.tools || [];\nif (tools.length > 0) {\n  return { route: 'complex' };\n}\nreturn { route: 'simple' };"
+      },
+      "id": "router",
+      "name": "LLM Router",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [800, 0]
+    },
+    {
+      "parameters": {
+        "model": "llama3.1:8b",
+        "options": {
+          "baseURL": "http://172.22.0.6:11434"
+        }
+      },
+      "id": "ollama",
+      "name": "Ollama Local",
+      "type": "n8n-nodes-base.lmChatOllama",
+      "typeVersion": 1,
+      "position": [1000, -100]
+    },
+    {
+      "parameters": {
+        "model": "gpt-4o-mini",
+        "options": {}
+      },
+      "id": "openai",
+      "name": "OpenAI Cloud",
+      "type": "n8n-nodes-base.lmChatOpenAi",
+      "typeVersion": 1,
+      "position": [1000, 100]
+    },
+    {
+      "parameters": {
+        "options": {
+          "systemMessage": "={{ .system_prompt }}"
+        }
+      },
+      "id": "ai-agent",
+      "name": "AI Agent",
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3,
+      "position": [1200, 0]
+    },
+    {
+      "parameters": {},
+      "id": "respond",
+      "name": "Respond to User",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1,
+      "position": [1400, 0]
+    }
+  ],
+  "connections": {
+    "Chat Trigger": {
+      "main": [[{"node": "Parse Config", "type": "main", "index": 0}]]
+    },
+    "Parse Config": {
+      "main": [[{"node": "Load Agent Config", "type": "main", "index": 0}]]
+    },
+    "Load Agent Config": {
+      "main": [
+        [{"node": "Load AGENTS.md", "type": "main", "index": 0}],
+        [{"node": "Load USERS.md", "type": "main", "index": 0}],
+        [{"node": "LLM Router", "type": "main", "index": 0}]
+      ]
+    },
+    "Load AGENTS.md": {
+      "main": [[{"node": "Build System Prompt", "type": "main", "index": 0}]]
+    },
+    "Build System Prompt": {
+      "main": [[{"node": "AI Agent", "type": "main", "index": 0}]]
+    },
+    "LLM Router": {
+      "main": [
+        [{"node": "Ollama Local", "type": "main", "index": 0}],
+        [{"node": "OpenAI Cloud", "type": "main", "index": 0}]
+      ]
+    },
+    "Ollama Local": {
+      "ai_languageModel": [[{"node": "AI Agent", "type": "ai_languageModel", "index": 0}]]
+    },
+    "OpenAI Cloud": {
+      "ai_languageModel": [[{"node": "AI Agent", "type": "ai_languageModel", "index": 0}]]
+    },
+    "AI Agent": {
+      "main": [[{"node": "Respond to User", "type": "main", "index": 0}]]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate"
+  },
+  "staticData": null,
+  "tags": [],
+  "pinData": {}
+}
