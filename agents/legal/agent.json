@@ -1,0 +1,14 @@
+{
+  "id": "legal",
+  "name": "Legal",
+  "description": "Especializado en revision de contratos, NDAs, compliance y riesgo legal",
+  "version": "1.0.0",
+  "model_preference": "auto",
+  "tools": [],
+  "memory": { "enabled": true, "type": "both" },
+  "config": {
+    "github_repo": "https://github.com/sbronchu/n8n-agent-factory",
+    "agents_md_path": "agents/legal/AGENTS.md",
+    "users_md_path": "agents/legal/USERS.md"
+  }
+}
