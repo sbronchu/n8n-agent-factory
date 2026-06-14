@@ -1,0 +1,14 @@
+{
+  "id": "finance",
+  "name": "de Finanzas",
+  "description": "Especializado en journal entries, reporting, reconciliacion y auditorias",
+  "version": "1.0.0",
+  "model_preference": "auto",
+  "tools": [],
+  "memory": { "enabled": true, "type": "both" },
+  "config": {
+    "github_repo": "https://github.com/sbronchu/n8n-agent-factory",
+    "agents_md_path": "agents/finance/AGENTS.md",
+    "users_md_path": "agents/finance/USERS.md"
+  }
+}
